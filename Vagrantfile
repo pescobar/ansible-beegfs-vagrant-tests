@@ -29,6 +29,7 @@ Vagrant.configure("2") do |config|
       v.customize ['createhd', '--filename', '/tmp/beegfsDiskB-centos.vdi', '--size', 10 * 1024]
       v.customize ['storageattach', :id,  '--storagectl', 'SATA Controller', '--port', 2, '--device', 0, '--type', 'hdd', '--medium', '/tmp/beegfsDiskB-centos.vdi']
     end
+    oss01.vm.provision "shell", path: "vm-setup.sh"
   end
   
   config.vm.define "oss02" do |oss02|
@@ -46,6 +47,7 @@ Vagrant.configure("2") do |config|
       v2.customize ['createhd', '--filename', '/tmp/beegfsDiskD-centos.vdi', '--size', 10 * 1024]
       v2.customize ['storageattach', :id,  '--storagectl', 'SATA Controller', '--port', 2, '--device', 0, '--type', 'hdd', '--medium', '/tmp/beegfsDiskD-centos.vdi']
     end
+    oss02.vm.provision "shell", path: "vm-setup.sh"
   end
 
 end
