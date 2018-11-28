@@ -6,7 +6,7 @@
   - cluster_beegfs_oss
   - cluster_beegfs_client
   roles:
-  - role: ansible-role-beegfs
+  - role: stackhpc.beegfs
     beegfs_enable:
       admon: false
       mgmt: "{{ inventory_hostname in groups['cluster_beegfs_mgmt'] }}"
