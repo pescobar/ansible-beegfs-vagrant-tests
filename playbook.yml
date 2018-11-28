@@ -1,0 +1,31 @@
+---
+- become: true
+  hosts:
+  - cluster_beegfs_mgmt
+  - cluster_beegfs_mds
+  - cluster_beegfs_oss
+  - cluster_beegfs_client
+  roles:
+  - role: ansible-role-beegfs
+    beegfs_enable:
+      admon: false
+      mgmt: "{{ inventory_hostname in groups['cluster_beegfs_mgmt'] }}"
+      meta: "{{ inventory_hostname in groups['cluster_beegfs_mds'] }}"
+      oss: "{{ inventory_hostname in groups['cluster_beegfs_oss'] }}"
+      tuning: "{{ inventory_hostname in groups['cluster_beegfs_oss'] }}"
+      client: "{{ inventory_hostname in groups['cluster_beegfs_client'] }}"
+    beegfs_oss_multi_port: false
+    beegfs_oss:
+    - dev: "/dev/sdb"
+      port: 8003
+    - dev: "/dev/sdc"
+      port: 8003
+    beegfs_mgmt_host: "{{ groups['cluster_beegfs_mgmt'] | first }}"
+    beegfs_client:
+    - path: "/mnt/beegfs"
+      port: 8004
+    beegfs_fstype: "xfs"
+    beegfs_force_format: true
+    beegfs_interfaces: ["eth1"]
+    beegfs_rdma: false
+    beegfs_state: present

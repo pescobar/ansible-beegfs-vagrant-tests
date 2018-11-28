@@ -1,0 +1,27 @@
+---
+[mgmtd]
+mgmtd ansible_host=192.168.56.101 ansible_user=vagrant
+
+[oss01]
+oss01 ansible_host=192.168.56.102 ansible_user=vagrant
+
+[oss02]
+oss02 ansible_host=192.168.56.103 ansible_user=vagrant
+
+[cluster:children]
+mgmtd
+oss01
+oss02
+
+[cluster_beegfs_mgmt:children]
+mgmtd
+
+[cluster_beegfs_mds:children]
+mgmtd
+
+[cluster_beegfs_oss:children]
+oss01
+oss02
+
+[cluster_beegfs_client:children]
+oss01
