@@ -5,5 +5,5 @@
 # Testing:
 
 	vagrant up
-	vagrant ssh-config > ~/.ssh/config
+	vagrant ssh-config >> ~/.ssh/config
 	ansible-playbook -i inventory playbook.yml
