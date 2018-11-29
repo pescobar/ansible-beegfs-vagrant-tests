@@ -24,10 +24,10 @@ Vagrant.configure("2") do |config|
       v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
       v.customize ["modifyvm", :id, "--memory", 2048]
       v.customize ["modifyvm", :id, "--name", "oss01"]
-      v.customize ['createhd', '--filename', '/tmp/beegfsDiskA-centos.vdi', '--size', 10 * 1024]
-      v.customize ['storageattach', :id,  '--storagectl', 'SATA Controller', '--port', 1, '--device', 0, '--type', 'hdd', '--medium', '/tmp/beegfsDiskA-centos.vdi']
-      v.customize ['createhd', '--filename', '/tmp/beegfsDiskB-centos.vdi', '--size', 10 * 1024]
-      v.customize ['storageattach', :id,  '--storagectl', 'SATA Controller', '--port', 2, '--device', 0, '--type', 'hdd', '--medium', '/tmp/beegfsDiskB-centos.vdi']
+      v.customize ['createhd', '--filename', '/tmp/beegfsDiskB1-centos.vdi', '--size', 10 * 1024]
+      v.customize ['storageattach', :id,  '--storagectl', 'SATA Controller', '--port', 1, '--device', 0, '--type', 'hdd', '--medium', '/tmp/beegfsDiskB1-centos.vdi']
+      v.customize ['createhd', '--filename', '/tmp/beegfsDiskC1-centos.vdi', '--size', 10 * 1024]
+      v.customize ['storageattach', :id,  '--storagectl', 'SATA Controller', '--port', 2, '--device', 0, '--type', 'hdd', '--medium', '/tmp/beegfsDiskC1-centos.vdi']
     end
     oss01.vm.provision "shell", path: "vm-setup.sh"
   end
@@ -42,10 +42,10 @@ Vagrant.configure("2") do |config|
       v2.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
       v2.customize ["modifyvm", :id, "--memory", 2048]
       v2.customize ["modifyvm", :id, "--name", "oss02"]
-      v2.customize ['createhd', '--filename', '/tmp/beegfsDiskC-centos.vdi', '--size', 10 * 1024]
-      v2.customize ['storageattach', :id,  '--storagectl', 'SATA Controller', '--port', 1, '--device', 0, '--type', 'hdd', '--medium', '/tmp/beegfsDiskC-centos.vdi']
-      v2.customize ['createhd', '--filename', '/tmp/beegfsDiskD-centos.vdi', '--size', 10 * 1024]
-      v2.customize ['storageattach', :id,  '--storagectl', 'SATA Controller', '--port', 2, '--device', 0, '--type', 'hdd', '--medium', '/tmp/beegfsDiskD-centos.vdi']
+      v2.customize ['createhd', '--filename', '/tmp/beegfsDiskB2-centos.vdi', '--size', 10 * 1024]
+      v2.customize ['storageattach', :id,  '--storagectl', 'SATA Controller', '--port', 1, '--device', 0, '--type', 'hdd', '--medium', '/tmp/beegfsDiskB2-centos.vdi']
+      v2.customize ['createhd', '--filename', '/tmp/beegfsDiskC2-centos.vdi', '--size', 10 * 1024]
+      v2.customize ['storageattach', :id,  '--storagectl', 'SATA Controller', '--port', 2, '--device', 0, '--type', 'hdd', '--medium', '/tmp/beegfsDiskC2-centos.vdi']
     end
     oss02.vm.provision "shell", path: "vm-setup.sh"
   end
